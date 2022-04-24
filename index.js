@@ -1,8 +1,11 @@
 const { Client,Collection } = require("discord.js")
 
+const { register } = require("./util/register")
+
 const handler = class Handler {
  
   constructor({
+    token,
     cmdDir,
     eventDir,
     prefix,
@@ -13,7 +16,8 @@ const handler = class Handler {
     this.cmdDir = cmdDir || ""
     this.eventDir = eventDir || ""
     this.prefix = prefix || "!"
-    this.testGuild = testGuild || [];
+    this.testGuild = testGuild || []
+    this.token = token || ""
     
     this.setup();
   }
@@ -36,6 +40,13 @@ const handler = class Handler {
       
     })
     
+    if(this.token === "") {
+      throw new Error("Require discord bot token to login");
+    }
+    
+    this.client.login(this.token).then(() => {
+      register(this.client);
+    })
   }
   
 }

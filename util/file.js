@@ -10,13 +10,12 @@ const getDir = (path,ext = "js") => {
 
 const getFile = (path) => {
  
- const fileName = (path.includes("\\") ? path.split("\\") : path.split("/")).reverse()[0];
- 
-  const getFile = readdirSync(path).filter(i => {
-     const noExt = i.split(".")[0]
-     return noExt == fileName;
-  })
+ const getFile = require(path).catch(() => {
+   console.error("File on " + path + " doesnt exist")
+ })
   
   return getFile;
   
 }
+
+module.export = { getDir , getFile }
