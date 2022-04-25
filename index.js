@@ -45,7 +45,7 @@ const handler = class Handler {
     }
     
     this.client.login(this.token).then(() => {
-      register(this.client);
+      register(this.client,this.cmdDir,this.eventDir);
     })
   }
   

@@ -14,7 +14,8 @@ const getFile = (path) => {
    console.error("File on " + path + " doesnt exist")
  })
   
-  return getFile;
+  
+  return getFile || null;
   
 }
 
